@@ -71,19 +71,21 @@ prompt: |-
   Remember: Return ONLY the commit message, formatted according to conventional commits.
 
 extensions:
+  # `uvx mcp-server-git` causes issues from time to time, so I turn to cyanheads/git-mcp-server instead.
   - type: stdio
     name: git
-    cmd: uvx
+    cmd: bunx
     args:
-      - mcp-server-git@latest
+      - "@cyanheads/git-mcp-server@latest"
     timeout: 10
-    description: A Model Context Protocol server providing tools to read, search, and manipulate Git repositories programmatically via LLMs
+    description: Comprehensive Git MCP server enabling native git tools including clone, commit, worktree, & more.
     available_tools:
-      - git_status
-      - git_diff_staged
       - git_commit
+      - git_diff
       - git_log
       - git_show
+      - git_blame
+      - git_reflog
   - type: stdio
     name: repomix
     cmd: bunx
